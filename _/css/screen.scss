@@ -1,0 +1,309 @@
+// ::Imports pre-render. Must be after reset
+// ------------------------------------------------------------
+@import "libs/required";
+@import "libs/reset";
+@import "libs/settings";
+@import "libs/mixins";
+@import "libs/placeholders";
+
+// Transformicon Color:
+$navicon-color: $pos;
+
+// Use SASS globbing to import all _.scss files in the module folder.
+// These should be independent modules that follow the BEM/SMACSS way
+@import "modules/*"; 
+
+
+
+/* ::Base styles */
+/* ------------------------------------------------------------ */
+
+html {
+	font-size: 100%;
+	@include break-max(768px, $IE9: false) { // Stop at precise width, as we're talking about devices
+		-webkit-text-size-adjust: 100%;	// Stops text scaling in iOS.
+	}
+}
+
+body {
+	@extend .font-body;
+	background: $body-color;
+	color: $base-color;
+}
+
+a {
+	color: $action;
+	text-decoration: none;
+	@include link-active-styles { 	// Mixin for interactions (hover,focus,active)
+		color: $action-respond;
+	}
+	&:not(>img) {
+		@include force-wrap;
+	}
+}
+
+// ------------------------------------------------------------
+// Navigation module
+// ------------------------------------------------------------
+
+// Place your BEM/SMACSS style .scss modules in the modules folder
+
+.pagehead {
+
+	// background-color: transparentize($primary, 0.5);
+	// position: absolute;
+	background-color: $primary;
+	width: 100%;
+	z-index: 10;
+	overflow-x: hidden;
+
+	.logo {
+		display: block;
+		float: left;
+		margin: 12px 0 12px;
+		max-width: 50%;
+		img {
+			width: 100%;
+		}
+		@include break($d) {
+			width: 30%;
+			img {
+				max-width: 300px;
+			}
+		}
+	}
+
+	#nav-toggle {
+		float: right;
+		margin: 0;
+		padding-bottom: 23px;
+		padding-left: 15px;
+		padding-right: 15px;
+		border-radius: 0;
+		@include break($d) {
+			display: none;
+		}
+	}
+
+	.nav-collapse {
+		text-transform: uppercase;
+		@include clearfix;
+		background-color: $secondary;
+		clear: both;
+		text-align: center;
+		font-weight: lighter;
+		padding-bottom: 15px;
+		position: relative;
+		@include break($d) {
+			width: 70%;
+			margin: 0;
+			padding: 0;
+			clear: none;
+			background-color: transparent;
+			float: right;
+			padding-bottom: 0;
+			//height: 60px;
+			// clear: both;
+			// margin: 0 -500%;
+	  		//padding: 0 500%;
+		}
+		ul {
+
+			@include clearfix;
+			margin: 0; // cancel out global ul li style
+			@include break($d) {
+				width: 100%;
+				float: left;
+				clear: none;
+			}
+
+			li {
+				
+				margin: 0;
+				list-style-type: none;
+
+				a {
+
+					@extend .sans;
+					font-size: em-font(15px);
+					display: inline-block;
+					width: 100%;
+					color: $neg;
+					padding: 15px 5px;
+					background-color: transparent;
+
+					transition: background-color 0.2s ease-in-out;
+					-moz-transition: background-color 0.2s ease-in-out;
+					-webkit-transition: background-color 0.2s ease-in-out;
+
+					&:hover, &:active {
+						color: $pos;
+						background-color: lighten($secondary, 10%);
+						@include break($d) {
+							background-color: transparent;
+						}
+					}
+
+				}
+				@include break($d) {
+					width: auto;
+					float: right;
+					a {
+						padding: 30px 5px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.editable-gallery {
+	.fancybox {
+		width: 40%;
+		@include break($c) {width: 20%;}
+		margin-bottom: 10px;
+	}
+	a {
+		display: inline-block;
+		img {
+			max-width: 100%;
+		}
+		@include break($c) {
+
+		}
+	}
+}
+
+.typeset {
+
+	ul, ol {
+		margin-left: 15px;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		margin-bottom: 15px;
+		@include break($b) {
+			margin: 0 0 30px 0;
+			clear: both;
+			width: 100%;
+		}
+	}
+	.full-width {
+		margin: 0 0 30px 0;
+		clear: both;
+		width: 100%;
+	}
+	.right {
+
+		@include break($b) {
+			float: right;
+			margin: 0 0 15px 30px;
+			width: 40%;
+		}
+	}
+	.left {
+		@include break($b) {
+			float: left;
+			margin: 0 30px 15px 0;
+			width: 40%;
+		}
+	}
+
+	blockquote {
+		padding: 5%;
+		clear: both;
+		background-color: $secondary;
+		color: $pos;
+		@include break($b) {
+			clear: none;
+			float: right;
+		}
+		p {
+			&:before {
+				content: "“ ";
+			}
+			&:after {
+				content: " ”";	
+			}
+		}
+		i {
+			font-size: em-font(10px);
+		}
+	}
+}
+////////////
+// LAYOUT //
+////////////
+
+.row.typeset {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.hero {
+
+}
+
+.typeset ul.acc {
+	margin-left: 0;
+	li {
+		background-color: lighten($secondary, 15%);
+	}
+}
+
+.acc li {
+	list-style-type: none;
+}
+
+.acc li .acc-head {
+	cursor: pointer;
+	position: relative;
+	padding: 20px;
+}
+
+.acc li .acc-head i {
+	position: absolute;
+	top: 22px;
+	right: 15px;
+}
+
+.acc-panel {
+	padding: 0px 20px 10px;
+}
+
+.pagefoot {
+	background-color: $secondary;
+	margin-top: 50px;
+	padding: 15px 0;
+	text-align: right;
+}
+
+.fancybox {
+  img {
+  	width: 100%;
+  }
+}
+
+.fancybox.large { width:  43%; }
+
+
+/* ::Import styles */
+/* ------------------------------------------------------------ */
+
+@import "libs/typography"; 					// Base level typography
+@import "libs/forms";						// Forms
+@import "add-ons/module-typeset"; 			// Specific typesetting
+@import "add-ons/grid"; 					// Grid system
+
+
+/* ::Print */
+/* ------------------------------------------------------------ */
+
+@media print {
+	body {
+		@include adjust-leading-to(2);
+		font-size: percentage(10 / 16);
+	}
+}
