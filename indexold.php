@@ -9,8 +9,6 @@
 
 
 <div class="landing">
-
-	<img src="_/img/landing.jpg" alt="Instagram Plugin">	
 	
 </div>
 
@@ -88,47 +86,12 @@ for ($i = 0; $i < $count; $i++) {
 
 	</div>
 	</div>
-	<div class="row">
-		<p class="copyright">&copy;Re.Pub.Lic*Pi. All rights reserved.</p>
-	</div>
 </div>
 
 
 
 <!-- jQuery templates. Not rendered by the browser. Notice the type attributes -->
 
-<script id="headingTpl" type="text/x-jquery-tmpl">
-
-
-<div class="facebook-head">
-	<img class="avatar" src="${picture.data.url}"><a href="#"><span class="facebook-name">${name} <br>FaceBook Page</span></a>
-
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-</div>
-</div>
-
-</script>
-
-<script id="feedTpl" type="text/x-jquery-tmpl">
-<li>
-	
-	<div class="status">
-		<p><a href="http://www.facebook.com/profile.php?id=${from.id}" target="_blank">${from.name}</a></p>
-		<p class="message">{{html message}}</p>
-		{{if type == "link" }}
-			<div class="attachment">
-				<div class="attachment-data">
-					<p class="name"><a href="${link}" target="_blank">${name}</a></p>
-					<p class="caption">${caption}</p>
-					<p class="description">${description}</p>
-				</div>
-			</div>
-		{{/if}}
-	</div>
-	<p class="facebook-link"><a href="http://www.facebook.com/profile.php?id=${from.id}" target="_blank">>>View On Facebook</a></p>
-	
-</li>
-</script>
 
 
 
